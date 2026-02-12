@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/omkar-z1/sample-project.git'
-            }
-        }
-
         stage('Setup Python') {
             steps {
                 sh 'python3 -m venv venv'
