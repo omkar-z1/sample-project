@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'IMAGE_TAG', defaultValue: '', description: 'Docker image to deploy, e.g., omkarzagade/django-k8s-test:v42')
+    }
+
+    stages {
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh """
+                echo "Deploying image: ${params.IMAGE_TAG}"
+                kubectl set image deployment/django-deployment django=${params.IMAGE_TAG} --record
+                kubectl rollout status deployment django-deployment
+                """
+            }
+        }
+    }
+}
