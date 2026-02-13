@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: django
-          image: django-k8s-test
-          imagePullPolicy: Never
+          image: omkarzagade/django-k8s-test
+          imagePullPolicy: Always
           ports:
             - containerPort: 8222
